@@ -28,7 +28,7 @@ describe Oystercard do
     end
     
     it 'reduces balance by minimum fare on touch out' do
-      expect{ subject.touch_out(kings_cross) }.to change{ subject.balance }.by (-Journey::MIN_FARE)
+      expect{ subject.touch_out(kings_cross) }.to change{ subject.balance }.by (-Oystercard::MIN_FARE)
     end
 
   end
@@ -40,4 +40,28 @@ describe Oystercard do
     end
   end
 
+  describe '#fare' do
+      let(:old_street) {"Old Street"}
+      let(:kings_cross) {"Kings Cross"}
+
+      it 'returns the minimum fare if touch in and touch out' do
+        subject.top_up(10)
+        subject.touch_in(kings_cross)
+        subject.touch_out(old_street)
+        expect(subject.balance).to eq 8
+      end
+
+      it 'returns penalty fare if touch out, but no touch in' do
+        subject.top_up(20)
+        subject.touch_out(old_street)
+        expect(subject.balance).to eq 14
+      end
+
+    it 'returns penalty fare if touch in, but no touch out' do
+      subject.top_up(20)
+      subject.touch_in(kings_cross)
+      subject.touch_in(old_street)
+      expect(subject.balance).to eq 14
+    end
+  end
 end

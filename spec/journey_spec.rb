@@ -22,26 +22,6 @@ describe Journey do
         end
     end
 
-    describe '#fare' do
-        let(:old_street) {"Old Street"}
-        let(:kings_cross) {"Kings Cross"}
-
-        it 'returns the minimum fare if touch in and touch out' do
-            subject.starts(kings_cross)
-            subject.ends(old_street)
-            expect(subject.fare).to eq Journey::MIN_FARE
-        end
-
-        it 'returns penalty fare if touch out, but no touch in' do
-            subject.ends(old_street)
-            expect(subject.fare).to eq Journey::PENALTY_FARE
-        end
-
-        it 'returns penalty fare if touch in, but no touch out' do
-            subject.starts(kings_cross)
-            expect(subject.fare).to eq Journey::PENALTY_FARE
-        end
-    end
 
     describe "#reset" do
         let(:old_street) {"Old Street"}
