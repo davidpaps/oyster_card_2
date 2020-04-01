@@ -13,6 +13,7 @@ The app built on last weeks project principles, this time mimicking the Oyster C
 - Error message if a user is trying to top up and the upper limit is exceeded
 - Error message if trying to tap in to a station with insufficient credit
 - A user can track their Journey History, balance, and if they are currently in a journey.
+- A user can check if they are int he middle of a journey
 - A penalty fare is given if a journey has not been finished before starting a new one
 
 ---
@@ -40,5 +41,20 @@ oystercard = New Oystercard
 This will return a Hexadecimal number, indicating the creation of the new objects. You can then type in the following in the command line to action the objects accordingly:
 
 ```
+oystercard.balance
+oystercard.top_up(50)
+oystercard.touch_in("Aldgate")
+oystercard.touch_out("Liverpool Street")
+oystercard.journey_log
+oystercard.in_journey
+```
+
+---
+
+To run the test suite (RSpec), in the command line type:
 
 ```
+rspec
+```
+
+This will display 19 passing tests with 100% coverage.
